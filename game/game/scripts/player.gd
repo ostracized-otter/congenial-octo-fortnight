@@ -1,32 +1,39 @@
 extends CharacterBody2D
 var last_direction = ""
 @export var speed = 400
-var tile_size = 64
+var tile_size = 40
+var can_move = true
 var inputs = {"ui_right": Vector2.RIGHT,
 			"ui_left": Vector2.LEFT,
 			"ui_up": Vector2.UP,
 			"ui_down": Vector2.DOWN}
-			
 func _ready():
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size/2
+	
 
 func _unhandled_input(event):
 	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			move(dir)
+		if can_move:
+			if event.is_action_pressed(dir):
+				move(dir)
+				update(dir)
 			
 
 
 func check_input():
 	if Input.is_action_pressed(last_direction):
 		move(last_direction)
+	can_move = true
 		
 func move(dir):
 	position += inputs[dir] * tile_size
-	last_direction = dir
 	$Timer.start(0.4)
-
+	can_move = false
+	
+func update(dir):
+	last_direction = dir
+	
 	
 	
 func get_input():
