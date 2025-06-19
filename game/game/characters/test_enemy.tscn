@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b44iyswasirq4" path="res://characters/test_enemy.gd" id="1_ttg32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3ekm"]
-size = Vector2(38, 38)
+size = Vector2(40, 40)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_ttg32")
@@ -16,3 +16,4 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+color = Color(0.483438, 0.752847, 0.919588, 1)

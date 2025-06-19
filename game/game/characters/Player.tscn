@@ -8,8 +8,9 @@ size = Vector2(41, 41)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwbb7"]
 size = Vector2(38, 29)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_hwbb7")
+metadata/player = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5wycw")
