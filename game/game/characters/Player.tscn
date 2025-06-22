@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cm6objvfn6rd0" path="res://scripts/player.gd" id="1_hwbb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wycw"]
-size = Vector2(41, 41)
+size = Vector2(40, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwbb7"]
 size = Vector2(38, 29)
@@ -32,5 +32,7 @@ disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="check_input"]
