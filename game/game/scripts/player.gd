@@ -40,8 +40,16 @@ func move(dir):
 	
 func update(dir):
 	last_direction = dir
-	
-	
+	if dir == "ui_right":
+		$Node2D.rotation=deg_to_rad(90)
+	elif dir == "ui_left":
+		$Node2D.rotation=deg_to_rad(270)
+	elif dir == "ui_up":
+		$Node2D.rotation=deg_to_rad(0)
+	elif dir == "ui_down":
+		$Node2D.rotation=deg_to_rad(180)
+		
+		
 	
 func get_input():
 	

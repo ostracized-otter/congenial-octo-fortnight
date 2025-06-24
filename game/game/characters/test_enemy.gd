@@ -21,18 +21,30 @@ func _process(delta: float):
 	if global.enemy_can_move == true:
 
 		var direction = (player.global_position - global_position)
-		if direction.x <= 0:
+		print(direction.x)
+		print(direction.y)
+		if direction.x < 0:
 			dirx = -40
+			$Node2D.rotation=deg_to_rad(270)
 			
-		if direction.x >= 0:
+		if direction.x > 0:
 			dirx = 40
+			$Node2D.rotation=deg_to_rad(90)
 			
-		if direction.y <= 0:
+		if direction.y < 0:
 			diry = -40
+			$Node2D.rotation=deg_to_rad(0)
 			
-		if direction.y >= 0:
+		if direction.y > 0:
 			diry = 40
-		
+			$Node2D.rotation=deg_to_rad(180)
+			
+		elif direction.y == 0:
+			diry = 0
+			print("ffflkk")
+		elif direction.x == 0:
+			dirx = 0
+			print("fff")
 		#position = position.snapped(Vector2.ONE * tile_size)
 		position.x += dirx
 		position.y += diry

@@ -11,9 +11,18 @@ script = ExtResource("1_ttg32")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o3ekm")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 color = Color(0.483438, 0.752847, 0.919588, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/ColorRect"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 1.0
+offset_right = 25.0
+offset_bottom = 8.0
