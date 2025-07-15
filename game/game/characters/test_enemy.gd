@@ -39,12 +39,12 @@ func _process(delta: float):
 			diry = 40
 			$Node2D.rotation=deg_to_rad(180)
 			
-		elif direction.y == 0:
+		elif direction.y > -20 and direction.y < 20:
 			diry = 0
-			print("ffflkk")
-		elif direction.x == 0:
+		
+		elif direction.x > -20 and direction.x < 20:
 			dirx = 0
-			print("fff")
+		
 		#position = position.snapped(Vector2.ONE * tile_size)
 		position.x += dirx
 		position.y += diry
