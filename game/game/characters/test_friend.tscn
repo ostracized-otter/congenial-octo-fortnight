@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://2fo6sadb2j50"]
+[gd_scene load_steps=3 format=3 uid="uid://2fo6sadb2j50"]
+
+[ext_resource type="Script" uid="uid://vckemar5u2it" path="res://scripts/test_friend.gd" id="1_ej0sv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1dgc"]
+size = Vector2(40, 40)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["friendlies"]]
+script = ExtResource("1_ej0sv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_i1dgc")
@@ -10,8 +14,8 @@ shape = SubResource("RectangleShape2D_i1dgc")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Node2D"]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 color = Color(1, 0.462745, 1, 1)

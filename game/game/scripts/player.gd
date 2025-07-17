@@ -17,20 +17,26 @@ func _ready():
 func _unhandled_input(event):
 	for dir in inputs.keys():
 		if can_move:
-			if event.is_action_pressed(dir):
-				move(dir)
-				global.enemy_can_move = true
-				#update(dir)
-			
+			if $Node2D/Area2D/RayCast2D.is_colliding() == false:
+				if event.is_action_pressed(dir):
+					
+					move(dir)
+					global.enemy_can_move = true
+	
+		
+		
 func _process(delta: float):
 		for dir in inputs.keys():
 			if Input.is_action_pressed(dir):
 				update(dir)
 
 func check_input():
-	if Input.is_action_pressed(last_direction):
-		move(last_direction)
-		global.enemy_can_move = true
+	if $Node2D/Area2D/RayCast2D.is_colliding() == false:
+		if Input.is_action_pressed(last_direction):
+		
+			move(last_direction)
+			global.enemy_can_move = true
+			
 	can_move = true
 
 func move(dir):
@@ -54,11 +60,16 @@ func update(dir):
 func get_input():
 	
 	if Input.is_action_pressed("func_attack"):
-		$Area2D/CollisionShape2D.set_deferred("disabled", false)
+		$Node2D/Area2D/CollisionShape2D.set_deferred("disabled", false)
 		await get_tree().create_timer(0.1).timeout
-		$Area2D/CollisionShape2D.set_deferred("disabled", true)
+		$Node2D/Area2D/CollisionShape2D.set_deferred("disabled", true)
 
 
 func _physics_process(delta):
 	get_input()
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("friendlies"):
+		body.talk() # Replace with function body.
