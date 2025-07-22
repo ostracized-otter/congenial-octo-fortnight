@@ -35,18 +35,25 @@ func _process(delta: float):
 			
 
 func check_input():
+	print(last_direction)
+	can_move = true
 	if $Node2D/Area2D/RayCast2D.is_colliding() == false:
+		
 		if Input.is_action_pressed(last_direction):
 		
 			move(last_direction)
 			global.enemy_can_move = true
-			
-	can_move = true
 
 func move(dir):
-	position += inputs[dir] * tile_size
-	$Timer.start(0.4)
-	can_move = false
+	if can_move:
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "position", position + inputs[dir]*tile_size, 0.2)
+		#tween.tween_property(self, "scale", Vector2(), 1)
+		tween.tween_callback(check_input)
+		
+		#position += inputs[dir] * tile_size
+
+		can_move = false
 	
 func update(dir):
 
@@ -55,6 +62,7 @@ func update(dir):
 		dir == "ui_up" #change to last dir
 	if $Node2D/Area2D/RayCast2Dl.is_colliding() == false:
 		dir == "ui_up"
+		#$Timer.start(0.4)
 	if dir == "ui_right":
 		$Node2D.rotation=deg_to_rad(90)
 	elif dir == "ui_left":
@@ -63,6 +71,7 @@ func update(dir):
 		$Node2D.rotation=deg_to_rad(0)
 	elif dir == "ui_down":
 		$Node2D.rotation=deg_to_rad(180)
+
 		
 
 	
