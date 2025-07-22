@@ -18,17 +18,21 @@ func _unhandled_input(event):
 	for dir in inputs.keys():
 		if can_move:
 			if $Node2D/Area2D/RayCast2D.is_colliding() == false:
+				
+					
 				if event.is_action_pressed(dir):
 					
 					move(dir)
 					global.enemy_can_move = true
 	
-		
+
 		
 func _process(delta: float):
-		for dir in inputs.keys():
-			if Input.is_action_pressed(dir):
-				update(dir)
+
+	for dir in inputs.keys():
+		if Input.is_action_pressed(dir):
+			update(dir)
+			
 
 func check_input():
 	if $Node2D/Area2D/RayCast2D.is_colliding() == false:
@@ -45,7 +49,12 @@ func move(dir):
 	can_move = false
 	
 func update(dir):
+
 	last_direction = dir
+	if $Node2D/Area2D/RayCast2Dr.is_colliding() == false:
+		dir == "ui_up" #change to last dir
+	if $Node2D/Area2D/RayCast2Dl.is_colliding() == false:
+		dir == "ui_up"
 	if dir == "ui_right":
 		$Node2D.rotation=deg_to_rad(90)
 	elif dir == "ui_left":
@@ -55,7 +64,7 @@ func update(dir):
 	elif dir == "ui_down":
 		$Node2D.rotation=deg_to_rad(180)
 		
-		
+
 	
 func get_input():
 	
@@ -64,7 +73,9 @@ func get_input():
 		await get_tree().create_timer(0.1).timeout
 		$Node2D/Area2D/CollisionShape2D.set_deferred("disabled", true)
 
+		
 
+		
 func _physics_process(delta):
 	get_input()
 	move_and_slide()

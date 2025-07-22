@@ -794,8 +794,9 @@ tile_map_data = PackedByteArray("AAADAAUAAAAQAAAAAAADAAYAAAAQAAAAAAADAAcAAAAQAAA
 tile_set = SubResource("TileSet_8j3fl")
 collision_visibility_mode = 2
 
-[node name="CharacterBody2D3" parent="." instance=ExtResource("4_t3dhk")]
+[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("talk_label") instance=ExtResource("4_t3dhk")]
 position = Vector2(660, 340)
+talk_label = NodePath("../CanvasLayer/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

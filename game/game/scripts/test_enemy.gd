@@ -51,3 +51,4 @@ func _process(delta: float):
 		#position += Vector2.ONE * tile_size/2
 	
 		global.enemy_can_move = false
+		#Engine.time_scale = 0.1
