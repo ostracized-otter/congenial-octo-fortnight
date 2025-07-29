@@ -2,6 +2,7 @@ extends CharacterBody2D
 var player: Node
 var dirx  = 0
 var diry = 0
+var health: float = 3
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var tile_size = 40
 @export var enemyturn = false
@@ -44,10 +45,19 @@ func _process(delta: float):
 		
 		elif direction.x > -20 and direction.x < 20:
 			dirx = 0
-		
+		print(dirx, "enehy")
+		print(diry, "enemy2")
+		var tween = get_tree().create_tween()
 		#position = position.snapped(Vector2.ONE * tile_size)
-		position.x += dirx
-		position.y += diry
+		
+		tween.tween_property(self, "position", Vector2(position.x+dirx, position.y+diry), 0.2)
+		#tween.parallel().tween_property(self, "position", Vector2(position.x+dirx, position.y), 0.2)
+		
+	
+		
+		#tween.parallel().tween_property(self, "position", Vector2(position.x, position.y+diry), 0.2)
+	#	position.x += dirx
+		#position.y += diry
 		#position += Vector2.ONE * tile_size/2
 	
 		global.enemy_can_move = false

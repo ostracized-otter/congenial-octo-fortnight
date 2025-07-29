@@ -58,6 +58,10 @@ position = Vector2(-7.62939e-06, -1)
 rotation = -1.57125
 shape = SubResource("RectangleShape2D_pf73y")
 
+[node name="looking_dir" type="RayCast2D" parent="Node2D/Area2D"]
+target_position = Vector2(0, -324)
+collision_mask = 4
+
 [node name="ColorRect" type="ColorRect" parent="Node2D"]
 offset_left = -20.0
 offset_top = -20.0
@@ -65,5 +69,5 @@ offset_right = 20.0
 offset_bottom = 20.0
 
 [connection signal="timeout" from="Timer" to="." method="check_input"]
-[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_touched"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_touched"]

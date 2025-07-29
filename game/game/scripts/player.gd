@@ -25,7 +25,8 @@ func _unhandled_input(event):
 				if event.is_action_pressed(dir):
 					if $Node2D/Area2D/RayCast2D.is_colliding() == false:
 						move(dir)
-						global.enemy_can_move = true
+						if $Node2D/Area2D/looking_dir.is_colliding() == false:
+							global.enemy_can_move = true
 						print("sides colliding")
 					elif $Node2D/Area2D/RayCast2D.is_colliding():
 						print("Front colliding")
@@ -33,11 +34,13 @@ func _unhandled_input(event):
 					elif $Node2D/Area2D/RayCast2D.is_colliding() and $Node2D/Area2D/RayCast2Dl.is_colliding():
 						move(dir)
 						print("One side")
-						global.enemy_can_move = true
+						if $Node2D/Area2D/looking_dir.is_colliding() == false:
+							global.enemy_can_move = true
 					elif $Node2D/Area2D/RayCast2D.is_colliding() and $Node2D/Area2D/RayCast2Dr.is_colliding():
 						move(dir)
 						print("Other side")
-						global.enemy_can_move = true
+						if $Node2D/Area2D/looking_dir.is_colliding() == false:
+							global.enemy_can_move = true
 		
 
 		
@@ -129,6 +132,6 @@ func _on_area_2d_body_touched(body: Node2D) -> void:
 			if combat_run == false: # Replace with function body.
 				body.touch()
 				combat=true
-				global.enemy_can_move = true
+				#global.enemy_can_move = true
 				combat_run = true
 				print("move:no")
