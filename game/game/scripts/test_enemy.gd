@@ -52,3 +52,5 @@ func _process(delta: float):
 	
 		global.enemy_can_move = false
 		#Engine.time_scale = 0.1
+func touch():
+	print("FUCK YOU")

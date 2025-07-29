@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://cutnnt1i17jke"]
+[gd_scene load_steps=7 format=4 uid="uid://cutnnt1i17jke"]
 
 [ext_resource type="PackedScene" uid="uid://dsu3h88w7do5a" path="res://characters/Player.tscn" id="1_xtpor"]
 [ext_resource type="Texture2D" uid="uid://u41vf6j2f1k" path="res://assets/87044533-f5e89f00-c1f6-11ea-9178-67b2e357ee8a.png" id="3_y88xn"]
+[ext_resource type="PackedScene" uid="uid://crfic2s0iyrre" path="res://characters/test_enemy.tscn" id="4_8j3fl"]
 [ext_resource type="PackedScene" uid="uid://2fo6sadb2j50" path="res://characters/test_friend.tscn" id="4_t3dhk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3dhk"]
@@ -785,8 +786,9 @@ sources/0 = SubResource("TileSetAtlasSource_t3dhk")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_xtpor")]
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("talk_label") instance=ExtResource("1_xtpor")]
 position = Vector2(460, 260)
+talk_label = NodePath("../CanvasLayer/Label")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(2.5, 2.5)
@@ -806,3 +808,6 @@ offset_top = 452.0
 offset_right = 412.0
 offset_bottom = 475.0
 text = "KJHNOUIGHUILHKJ"
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_8j3fl")]
+position = Vector2(460, 420)

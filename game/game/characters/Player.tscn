@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsu3h88w7do5a"]
+[gd_scene load_steps=5 format=3 uid="uid://dsu3h88w7do5a"]
 
 [ext_resource type="Script" uid="uid://cm6objvfn6rd0" path="res://scripts/player.gd" id="1_hwbb7"]
 
@@ -7,6 +7,9 @@ size = Vector2(40, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwbb7"]
 size = Vector2(38, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf73y"]
+size = Vector2(53, 21)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_hwbb7")
@@ -46,6 +49,15 @@ target_position = Vector2(-35, 0)
 collision_mask = 2
 hit_from_inside = true
 
+[node name="hit_detector" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_pf73y")
+
+[node name="hit_detector2" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(-7.62939e-06, -1)
+rotation = -1.57125
+shape = SubResource("RectangleShape2D_pf73y")
+
 [node name="ColorRect" type="ColorRect" parent="Node2D"]
 offset_left = -20.0
 offset_top = -20.0
@@ -53,4 +65,5 @@ offset_right = 20.0
 offset_bottom = 20.0
 
 [connection signal="timeout" from="Timer" to="." method="check_input"]
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_touched"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
