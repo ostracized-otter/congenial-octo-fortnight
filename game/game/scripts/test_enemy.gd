@@ -13,6 +13,7 @@ func _ready() -> void:
 	for players in get_tree().get_nodes_in_group("player"):
 		player = players
 func _process(delta: float):
+	
 	if not player == null:
 		#look_at(player.global_position)
 		#velocity = Vector2(1, 0).rotated(rotation) * speed
@@ -49,8 +50,10 @@ func _process(delta: float):
 		print(diry, "enemy2")
 		var tween = get_tree().create_tween()
 		#position = position.snapped(Vector2.ONE * tile_size)
-		
-		tween.tween_property(self, "position", Vector2(position.x+dirx, position.y+diry), 0.2)
+		if $Node2D/Area2D/RayCast2D.is_colliding() == false:
+			if $Node2D/Area2D/RayCast2D2.is_colliding() == false:
+				if $Node2D/Area2D/RayCast2D3.is_colliding() == false:
+					tween.tween_property(self, "position", Vector2(position.x+dirx, position.y+diry), 0.2)
 		#tween.parallel().tween_property(self, "position", Vector2(position.x+dirx, position.y), 0.2)
 		
 	
@@ -60,7 +63,7 @@ func _process(delta: float):
 		#position.y += diry
 		#position += Vector2.ONE * tile_size/2
 	
-		global.enemy_can_move = false
-		#Engine.time_scale = 0.1
+			global.enemy_can_move = false
+			#Engine.time_scale = 0.1
 func touch():
-	print("FUCK YOU")
+	print("lets have sex")
