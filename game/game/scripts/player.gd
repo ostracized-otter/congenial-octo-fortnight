@@ -31,6 +31,7 @@ func _unhandled_input(event):
 					elif $Node2D/Area2D/RayCast2D.is_colliding():
 						print("Front colliding")
 						pass
+						
 					elif $Node2D/Area2D/RayCast2D.is_colliding() and $Node2D/Area2D/RayCast2Dl.is_colliding():
 						move(dir)
 						print("One side")
@@ -97,7 +98,7 @@ func update(dir):
 
 
 func talk():
-	talk_label.text = str(global.enemy_can_move)
+	pass
 
 	
 
@@ -135,3 +136,7 @@ func _on_area_2d_body_touched(body: Node2D) -> void:
 				#global.enemy_can_move = true
 				combat_run = true
 				print("move:no")
+				talk_label.text = "you fuking dead cunt"
+				await get_tree().create_timer(1).timeout
+				
+				get_tree().reload_current_scene()

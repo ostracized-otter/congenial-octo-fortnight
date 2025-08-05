@@ -67,7 +67,8 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+color = Color(0.837038, 0.720358, 0, 1)
 
 [connection signal="timeout" from="Timer" to="." method="check_input"]
-[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_touched"]
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

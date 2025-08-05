@@ -39,3 +39,6 @@ target_position = Vector2(45, 0)
 
 [node name="RayCast2D2" type="RayCast2D" parent="Node2D/Area2D"]
 target_position = Vector2(0, -48)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
