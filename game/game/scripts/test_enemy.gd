@@ -8,7 +8,7 @@ var tile_size = 40
 @export var enemyturn = false
 @onready var global = get_node("/root/Global")
 
-var speed: float = 40
+var speed: float = 20
 
 func _ready() -> void:
 	for players in get_tree().get_nodes_in_group("player"):
@@ -20,6 +20,7 @@ func actor_setup():
 
 	# Now that the navigation map is no longer empty, set the movement target.
 	set_movement_target(player.position)
+	
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
@@ -29,6 +30,7 @@ func set_movement_target(movement_target: Vector2):
 
 func _move_towards_player():
 	pass
+	
 func _process(delta: float):
 	if not player == null:
 		#look_at(player.global_position)
@@ -74,19 +76,19 @@ func _process(delta: float):
 		set_movement_target(player.position)
 		var target = navigation_agent.get_next_path_position()
 		if target.x - position.x< -10:
-			dirx = -40
+			dirx = -speed
 			$Node2D.rotation=deg_to_rad(270)
 			
 		if target.x - position.x > 10:
-			dirx = 40
+			dirx = speed
 			$Node2D.rotation=deg_to_rad(90)
 			
 		if target.y - position.y < -10:
-			diry = -40
+			diry = -speed
 			$Node2D.rotation=deg_to_rad(0)
 			
 		if target.y - position.y> 10:
-			diry = 40
+			diry = speed
 			$Node2D.rotation=deg_to_rad(180)
 			
 		#elif player.position.y > -20 and player.position.y < 20:
@@ -99,7 +101,7 @@ func _process(delta: float):
 		tween.tween_property(self, "position", Vector2(global_position.x+dirx, global_position.y+diry), 0.2)
 		if navigation_agent.is_navigation_finished():
 			return
-		global.enemy_can_move = false
+		#global.enemy_can_move = false
 
 		
 		

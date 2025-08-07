@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7thpihhkftl"]
+
+[ext_resource type="Script" uid="uid://bs2ge77lhf3g1" path="res://scripts/test_enemy2.gd" id="1_v47p6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll0x0"]
+size = Vector2(40, 40)
+
+[node name="TestEnemy2" type="CharacterBody2D"]
+script = ExtResource("1_v47p6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ll0x0")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.483438, 0.752847, 0.919588, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/ColorRect"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 1.0
+offset_right = 25.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
