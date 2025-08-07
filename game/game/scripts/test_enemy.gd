@@ -23,9 +23,9 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
-
-func _physics_process(delta: float) -> void:
-	_move_towards_player()
+#
+#func _physics_process(delta: float) -> void:
+	#_move_towards_player()
 
 func _move_towards_player():
 	pass
@@ -37,34 +37,34 @@ func _process(delta: float):
 		pass
 
 	if global.enemy_can_move == true:
-
-		var direction = (player.global_position - global_position)
-		print(direction.x)
-		print(direction.y)
-		if direction.x < -1:
-			dirx = -40
-			$Node2D.rotation=deg_to_rad(270)
-			
-		if direction.x > 1:
-			dirx = 40
-			$Node2D.rotation=deg_to_rad(90)
-			
-		if direction.y < -1:
-			diry = -40
-			$Node2D.rotation=deg_to_rad(0)
-			
-		if direction.y > 1:
-			diry = 40
-			$Node2D.rotation=deg_to_rad(180)
-			
-		elif direction.y > -20 and direction.y < 20:
-			diry = 0
 		
-		elif direction.x > -20 and direction.x < 20:
-			dirx = 0
+		#var direction = (player.global_position - global_position)
+		#print(direction.x)
+		#print(direction.y)
+		#if direction.x < -1:
+			#dirx = -40
+			#$Node2D.rotation=deg_to_rad(270)
+			#
+		#if direction.x > 1:
+			#dirx = 40
+			#$Node2D.rotation=deg_to_rad(90)
+			#
+		#if direction.y < -1:
+			#diry = -40
+			#$Node2D.rotation=deg_to_rad(0)
+			#
+		#if direction.y > 1:
+			#diry = 40
+			#$Node2D.rotation=deg_to_rad(180)
+			#
+		#elif direction.y > -20 and direction.y < 20:
+			#diry = 0
+		#
+		#elif direction.x > -20 and direction.x < 20:
+			#dirx = 0
 		print(dirx, "enehy")
 		print(diry, "enemy2")
-		#var tween = get_tree().create_tween()
+		var tween = get_tree().create_tween()
 		##position = position.snapped(Vector2.ONE * tile_size)
 		#if $Node2D/Area2D/RayCast2D.is_colliding() == false:
 			#if $Node2D/Area2D/RayCast2D2.is_colliding() == false:
@@ -72,8 +72,35 @@ func _process(delta: float):
 					#tween.tween_property(self, "position", Vector2(position.x+dirx, position.y+diry), 0.2)
 		
 		set_movement_target(player.position)
+		var target = navigation_agent.get_next_path_position()
+		if target.x - position.x< -10:
+			dirx = -40
+			$Node2D.rotation=deg_to_rad(270)
+			
+		if target.x - position.x > 10:
+			dirx = 40
+			$Node2D.rotation=deg_to_rad(90)
+			
+		if target.y - position.y < -10:
+			diry = -40
+			$Node2D.rotation=deg_to_rad(0)
+			
+		if target.y - position.y> 10:
+			diry = 40
+			$Node2D.rotation=deg_to_rad(180)
+			
+		#elif player.position.y > -20 and player.position.y < 20:
+			#diry = 0
+		#
+		#elif player.position.x > -20 and player.position.x < 20:
+			#dirx = 0
+			
+		#THIS ONE
+		tween.tween_property(self, "position", Vector2(global_position.x+dirx, global_position.y+diry), 0.2)
 		if navigation_agent.is_navigation_finished():
 			return
+		global.enemy_can_move = false
+
 		
 		
 		#var current_agent_position: Vector2 = global_position

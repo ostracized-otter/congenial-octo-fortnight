@@ -3,6 +3,7 @@ var last_direction = ""
 @export var speed = 400
 @export var talk_label: Node
 @onready var global = get_node("/root/Global")
+@onready var animation_player = $AnimationPlayer
 var tile_size = 40
 var can_move = true
 var combat = false
@@ -27,6 +28,7 @@ func _unhandled_input(event):
 						move(dir)
 						if $Node2D/Area2D/looking_dir.is_colliding() == false:
 							global.enemy_can_move = true
+							print("mov")
 						print("sides colliding")
 					elif $Node2D/Area2D/RayCast2D.is_colliding():
 						print("Front colliding")
@@ -37,11 +39,14 @@ func _unhandled_input(event):
 						print("One side")
 						if $Node2D/Area2D/looking_dir.is_colliding() == false:
 							global.enemy_can_move = true
+							print("mov")
 					elif $Node2D/Area2D/RayCast2D.is_colliding() and $Node2D/Area2D/RayCast2Dr.is_colliding():
 						move(dir)
 						print("Other side")
 						if $Node2D/Area2D/looking_dir.is_colliding() == false:
 							global.enemy_can_move = true
+							print("mov")
+					$AnimationPlayer.play("casual")
 		
 
 		
@@ -61,6 +66,7 @@ func check_input():
 		if $Node2D/Area2D/RayCast2D.is_colliding() == false:
 			move(last_direction)
 			global.enemy_can_move = true
+			print("shsis")
 
 func move(dir):
 	if can_move:
@@ -138,5 +144,5 @@ func _on_area_2d_body_touched(body: Node2D) -> void:
 				print("move:no")
 				talk_label.text = "you fuking dead cunt"
 				await get_tree().create_timer(1).timeout
-				
+				global.enemy_can_move = false
 				get_tree().reload_current_scene()

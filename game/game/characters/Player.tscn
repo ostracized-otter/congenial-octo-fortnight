@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsu3h88w7do5a"]
+[gd_scene load_steps=9 format=3 uid="uid://dsu3h88w7do5a"]
 
 [ext_resource type="Script" uid="uid://cm6objvfn6rd0" path="res://scripts/player.gd" id="1_hwbb7"]
+[ext_resource type="Texture2D" uid="uid://dmay3mnq8dltq" path="res://assets/1_wl2bkXNLKB9bDsXGRABmJA.jpg" id="2_pf73y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wycw"]
 size = Vector2(40, 40)
@@ -10,6 +11,44 @@ size = Vector2(38, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf73y"]
 size = Vector2(53, 21)
+
+[sub_resource type="Animation" id="Animation_hwbb7"]
+resource_name = "casual"
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_mn00f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pf73y"]
+_data = {
+&"RESET": SubResource("Animation_mn00f"),
+&"casual": SubResource("Animation_hwbb7")
+}
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_hwbb7")
@@ -26,6 +65,9 @@ one_shot = true
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_pf73y")
+hframes = 32
+vframes = 18
 
 [node name="Area2D" type="Area2D" parent="Node2D"]
 
@@ -63,11 +105,17 @@ target_position = Vector2(0, -324)
 collision_mask = 4
 
 [node name="ColorRect" type="ColorRect" parent="Node2D"]
+visible = false
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 color = Color(0.837038, 0.720358, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pf73y")
+}
 
 [connection signal="timeout" from="Timer" to="." method="check_input"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_touched"]
