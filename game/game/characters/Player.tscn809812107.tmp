@@ -57,6 +57,9 @@ metadata/player = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5wycw")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -114,5 +117,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_pf73y")
 }
 
+[connection signal="timeout" from="Timer" to="." method="check_input"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_touched"]
 [connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

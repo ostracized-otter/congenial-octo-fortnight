@@ -1,2 +1,2 @@
 extends Node
-var enemy_can_move = false
+var enemy_can_move = true
